@@ -3,7 +3,8 @@ import { useSelector, useDispatch } from 'react-redux';
 // import { nanoid } from 'nanoid'
 import { Form, Label, Input, BtnAdd } from './ContactForm.styled';
 import {selectContacts} from '../redux/selectors'
-import { addContact } from 'redux/contactsSlice';
+import { addContact } from 'redux/operations';
+// import { nanoid } from 'nanoid'
 
 
 export const ContactForm=()=>{
@@ -16,13 +17,22 @@ export const ContactForm=()=>{
 
   const handleSubmit=event=>{
     event.preventDefault();
+
+    const newContact = { name, number};
     
-    contacts.find(contact => contact.name.toLowerCase() === name.toLowerCase())
-      ? alert(`${name} is already in contacts.`)
-      : dispatch(addContact({ name, number }));
-      setName('');
-      setNumber('')
-  }
+    const checkedNumber=contacts.find(contact => contact.number === number);
+    
+    if(contacts.some(contact=>contact.name===name)){
+      return alert(`Contact with name "${name}" is already in contacts`);
+    } else if(checkedNumber){
+      return alert(
+        `Contact with number ${checkedNumber.number} is already in  ${checkedNumber.name}`
+      );
+    }
+    else{
+      dispatch(addContact(newContact))
+    }}
+  
   
   const handleNameChange = event => {
     setName(event.currentTarget.value);
