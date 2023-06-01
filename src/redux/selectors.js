@@ -10,11 +10,15 @@ export const selectFilter = state => state.filter;
 export const selectVisibleContacts = createSelector(
     [selectContacts, selectFilter],
     (contacts, filter) => {
-      // return contacts.filter(({ name }) =>
-      // name.toLowerCase().includes(filter.toLowerCase())
+      let normalizedFilter = filter.toLowerCase();
+     
+      const visibleContacts = contacts.filter(contact =>
+        contact.name.toLowerCase().includes(normalizedFilter)
+      );
+      return visibleContacts;
       
-    // );
-    return contacts
+    
+    
     }
   );
   

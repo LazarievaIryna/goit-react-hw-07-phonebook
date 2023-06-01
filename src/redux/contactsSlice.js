@@ -1,10 +1,6 @@
 import { createSlice, isAnyOf } from '@reduxjs/toolkit';
 import {fetchContacts,addContact, deleteContact} from './operations'
-// const defaultStatus = {
-// 	pending: 'pending',
-// 	fulfilled: 'fulfilled',
-// 	rejected: 'rejected',
-// }
+
 const customArr = [fetchContacts, addContact, deleteContact]
 const fn = (status) => customArr.map((el) => el[status])
 const initialState={
@@ -30,10 +26,12 @@ const handlePending = state => {
   }
   const addContactReducer = (state, {payload})=>{
     state.items.push(payload)
+   
   }
-  const deleteContactReducer = (state, {payload})=>{
-    const index = state.items.findIndex(contact => contact.id === payload);
-      state.items.splice(index, 1);
+  const deleteContactReducer = (state, action)=>{
+    const index = state.items.findIndex(task => task.id === action.payload.id);
+  state.items.splice(index, 1);
+
   }
 const ContactsSlice=createSlice({
     name: 'contacts',

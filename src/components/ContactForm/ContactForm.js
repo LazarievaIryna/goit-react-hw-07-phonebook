@@ -1,10 +1,9 @@
 import { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-// import { nanoid } from 'nanoid'
 import { Form, Label, Input, BtnAdd } from './ContactForm.styled';
-import {selectContacts} from '../redux/selectors'
+import {selectContacts} from '../../redux/selectors'
 import { addContact } from 'redux/operations';
-// import { nanoid } from 'nanoid'
+
 
 
 export const ContactForm=()=>{
@@ -31,7 +30,10 @@ export const ContactForm=()=>{
     }
     else{
       dispatch(addContact(newContact))
-    }}
+    }
+  setName('')
+  setNumber('')
+  }
   
   
   const handleNameChange = event => {
