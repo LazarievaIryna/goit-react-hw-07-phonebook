@@ -14,6 +14,5 @@ export const BtnDelete = styled.button`
 `;
 export const Item = styled.li`
   margin-bottom: 10px;
-  /* display: flex;
-  justify-content: space-between; */
+  
 `;

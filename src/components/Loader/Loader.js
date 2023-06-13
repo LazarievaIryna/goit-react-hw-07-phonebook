@@ -1,5 +1,7 @@
 import GridLoader from "react-spinners/GridLoader";
+import PropTypes from 'prop-types';
 export const Loader =({isLoading})=>{
+
     return(<GridLoader
         color="#36d7b7"
         cssOverride={{}}
@@ -9,3 +11,8 @@ export const Loader =({isLoading})=>{
         width={15}
       />)
 }
+Loader.propTypes = {
+  
+  isLoading: PropTypes.bool.isRequired,
+   
+  }
